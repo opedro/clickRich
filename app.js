@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var coins=0, boosts;
+    var coins=0, boosts=[1,2,10];
     $('.clickArea').on('click', function () {
         earnCoin(function(){updateCoins()});
     });
@@ -9,7 +9,7 @@ $(document).ready(function () {
         callback();
     }
     function getClickValue() {
-        return 1;
+        return 1 + applyBoosts(1);
     }
     function updateCoins() {
         $('.coinsValue').html(coins);
@@ -17,6 +17,12 @@ $(document).ready(function () {
     function makeEffect(){
         $('img').rotate();
     }
-
+    function applyBoosts(base) {
+        var total = 0;
+        for(var i = 0; i < boosts.length; i++) {
+            total += boosts[i]*base;
+        }
+        return total;
+    }
     
 });
